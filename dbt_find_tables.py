@@ -14,7 +14,7 @@ warnings.simplefilter("ignore")
     
 input = sys.argv[1]
 print("Model name read as input: ",input)
-w= 'findstr /S/i "ref" ' + input
+w= 'findstr /S "ref" ' + input
 a=subprocess.check_output(w)
 a=a.decode("utf-8") 
 a=a.splitlines()   
@@ -37,7 +37,7 @@ while n>=1:
         if k == None:
             continue
         k=k+'.sql'
-        z='findstr /S/i "ref" ' + k
+        z='findstr /S "ref" ' + k
         try:
             subprocess.check_output(z)
         except:
@@ -71,7 +71,7 @@ ref_output.columns = ['table','level']
 source_output=pd.DataFrame(columns=['schema','table'])
 for s in ref_output.table:
     tbl=s+'.sql'
-    stg = 'findstr /S/i "{{source" '+ tbl
+    stg = 'findstr /S "{{source" '+ tbl
     try:
         subprocess.check_output(stg)
     except:
